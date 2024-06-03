@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  tortoisebot-ros2-gazebo:
+    container_name: ros_galactic_rviz_cont
+    privileged: true
+    build: 
+      context: .
+      dockerfile: ./dockerfile
+    image: ros_galactic_rviz
+    environment:
+      - DISPLAY
+      - ROS_DOMAIN_ID=1
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - $HOME/.Xauthority:/root/.Xauthority:ro
+      - ./rviz:/rviz
+    network_mode: host
+
